@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-  <title>The unWrapped Portal</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -15,77 +13,18 @@
     <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/index.css" media="screen" title="no title" charset="utf-8">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="styles/style.css">    
+    <title>The Pokemon Post</title>
+  </head>
+  <body>
 
-</head>
-
-<script>
-  if (!localStorage.getItem("userId") || !localStorage.getItem("name")) {
-    window.location.href = "/login"
-  };
-</script>
-
-    <nav
-      class="navbar navbar-light navbar-expand-md bg-faded justify-content-center sticky-top"
-      id="navText"
-    >
-      <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapsingNavbar3"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-          <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-            <li class="nav-item navLinks">
-              <a class="nav-link" href="/welcome" id="navText">Home</a>
-            </li>
-            <li class="nav-item navLinks">
-              <a class="nav-link" href="/create" id="navText">Create</a>
-            </li>
-            <li class="nav-item navLinks">
-              <a class="nav-link" href="/rsvp" id="navText">RSVP</a>
-            </li>
-            <li class="nav-item navLinks">
-              <a class="nav-link" href="/myParties" id="navText">Your Parties</a>
-            </li>
-            <li class="nav-item navLinks">
-              <a class="nav-link" href="/myRsvps" id="navText">Your RSVPs</a>
-            </li>
-            <li class="nav-item navLinks">
-              <a class="nav-link signOut" href="/login.html" id="navText">Log Out</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-<body>
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-sm-2">
-      </div>
-
-      <div class="col-sm-12">
-
-        {{{body}}}
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="/js/index.js"></script>
-      </div>
+    <div class="container">
+      <h1>The Pokemon Post — Get the Latest Pokemon News</h1>
+      <a href="/scrape"><button>Fetch the News</button></a>
+      <a href="/saved"><button>View Your Saved News</button></a>
+       {{{body}}}
     </div>
-  </div>
-</body>
-</div>
-</div>
-</div>
 
-
-
-
+    <script src="app.js"></script>
+  </body>
 </html>
