@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 
 module.exports = function(app) {
   
-  app.get("/scrape", function(req, res) {
+  app.get("/api/scrape", function(req, res) {
     axios.get("https://pokemongohub.net/").then(function(response) {
       var $ = cheerio.load(response.data);
 
@@ -35,11 +35,10 @@ module.exports = function(app) {
             console.log(err);
           });
       });
-      res.render("scrape");
     });
   });
 
-  app.get("/articles", function(req, res) {
+  app.get("/api/articles", function(req, res) {
     db.Article.find({})
       .then(function(dbArticle) {
         res.json(dbArticle);
@@ -49,7 +48,7 @@ module.exports = function(app) {
       });
   });
 
-  app.put("/articles/:id", function(req, res) {
+  app.put("/api/articles/:id", function(req, res) {
     let saved;
 
     switch (req.body.saved) {
@@ -72,7 +71,7 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/articles/:id", function(req, res) {
+  app.get("/api/articles/:id", function(req, res) {
     console.log("note connected");
     console.log(req.params.id);
     db.Article.findOne({ _id: req.params.id })
@@ -85,7 +84,7 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/articles/:id", function(req, res) {
+  app.post("/api/articles/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(dbNote) {
         return db.Article.findOneAndUpdate(
@@ -102,7 +101,7 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/saved", function(req, res) {
+  app.get("/api/saved", function(req, res) {
     db.Article.find({ saved: true})
       .then(function(dbArticle) {
         res.json(dbArticle);
