@@ -1,5 +1,3 @@
-$(".notes").hide()
-
 $(document).on("click", ".save", function() {
 
   var thisId = $(this).attr("id");
@@ -41,79 +39,65 @@ $(document).on("click", ".submitNote", function() {
   var thisId = $(this).attr("note-id");
   console.log("*-*-*-*-")
   console.log(thisId)
-  console.log("*-*-*-*-")
+  console.log("*-*-*-*-")  
 
-  console.log()
-  // console.log($(this).attr("articleNote"))
-  
-
-  // $.ajax({
-  //   method: "POST",
-  //   url: "/api/articles/" + thisId,
-  //   data: {
-  //     title: $
-  //     body: $(document).attr(".articleNote").val()
-  //   }
-  // })
-  //   .then(function(data) {
-      // $("#notes").hide()
-      // $(".noteTitle").val("")
-      // $(".articleNote").val("")
-    // });
+  $.ajax({
+    method: "POST",
+    url: "/api/articles/" + thisId,
+    data: {
+      title: $(".noteTitle").val(),
+      body: $(".articleNote").val()
+    }
+  })
+    .then(function(data) {
+      $("#notes").hide()
+      $(".noteTitle").val("")
+      $(".articleNote").val("")
+    });
 
 });
 
 
 function createCard(data) {
 
-  for (let i = 0; i < data.length; i++) {
-
-    let photo;
-    
+  for (let i = 0; i < data.length; i++) {  
 
       let thediv = $("<div>")
-        .addClass("card w-100 mt-3 mb-3 p-2")
+        .addClass("card w-100 m-3 p-3")
         .addClass("theCard")
         .addClass("align-top")
         .attr("style", "width: 18rem;")
         .attr("id", "cardBody")
 
-      let theImg = $("<img>")
-        .attr("src", photo)
-        .attr("alt", "")
-        .addClass("card-img-top");
-
       let divBody = $("<div>").addClass("card-body");
 
       let theTitle = $("<p>")
-        .addClass("card-text ml-3")
+        .addClass("card-text")
         .html(`<h2>${data[i].title}</h2>`)
 
       let theBody = $("<p>")
-        .addClass("card-text ml-3")
-        .html(`${data[i].blurb}`)
+        .addClass("card-text")
+        .html(data[i].blurb ? `${data[i].blurb}` : `<p>Sorry - No Summary Available</p> `)
 
       var saveBtn = $("<button>")
         .attr("id", data[i]._id)
         .attr("saved", data[i].saved)
-        .addClass("ml-3")
         .addClass("save")
-        .addClass("btn btn-danger")
+        .addClass("btn btn-warning")
         .addClass("btn-sm")
-        .html(" Save ")
+        .html(data[i].saved ? " Remove Article " :  " Save Article ")
 
       var readBtn = $("<button>")
-        .addClass("ml-3")
+        .addClass("ml-2 mr-2")
         .addClass("read")
         .addClass("btn-sm")
-        .addClass("btn btn-danger")
+        .addClass("btn btn-warning")
         .html(`<a href="${data[i].link}" target="blank">${"Read More"}</a>`)
 
       var noteBtn = $("<button>")
         .attr("id", data[i]._id)
-        .addClass("ml-3")
         .addClass("note")
-        .addClass("btn btn-danger")
+        .addClass("btn btn-warning")
         .addClass("btn-sm")
         .html(" Create Note ")
  
@@ -122,15 +106,17 @@ function createCard(data) {
       let applyNote = $("<td class='align-middle'>").html(noteBtn);
       
       thediv.append(divBody);
-      thediv.append(theImg);
+      // thediv.append(theImg);
       thediv.append(theTitle);
       thediv.append(theBody);
       thediv.append(applySave);
       thediv.append(applyRead);
       thediv.append(applyNote);
-      $(".articles").append(thediv);
+      $(".articles").append(thediv)
+      }   
   };
-}
+  
+
 
 function createModal(project) {
   console.log(project)

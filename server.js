@@ -3,10 +3,10 @@ const exphbs = require("express-handlebars");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
-var db = require("./models");
+const db = require("./models");
 
-var PORT = 3000;
-var app = express();
+const PORT = 3000;
+const app = express();
 
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +26,9 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-mongoose.connect("mongodb://localhost/pokemonpost", { useNewUrlParser: true });
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/pokemonpost";
+
+mongoose.connect(MONGODB_URI);
 
 // Start the server
 app.listen(PORT, function() {
