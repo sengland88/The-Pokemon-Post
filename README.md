@@ -1,5 +1,3 @@
-# The-Pokemon-Post
-
 <h2>Project Name</h2>
 <hr>
 The Pokemon Post
